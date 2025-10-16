@@ -98,7 +98,7 @@ import { useLanguage } from "../hooks/useLanguage";
           {/* Aarti List */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-lg p-6 sticky top-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6 font-devanagari">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 font-devanagari border-b-2 border-orange-500 pb-3">
                 {t("aarti.availableAartis", "Available Aartis")}
               </h2>
 
@@ -114,13 +114,15 @@ import { useLanguage } from "../hooks/useLanguage";
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="font-semibold">{aarti.title}</h3>
-                        <p className="text-sm opacity-75">
-                          {t("aarti.sanskrit", "Sanskrit")}
-                        </p>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-gray-900 mb-1">{aarti.title}</h3>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-medium bg-orange-100 text-orange-700 px-2 py-1 rounded">
+                            {t("aarti.sanskrit", "Sanskrit")}
+                          </span>
+                        </div>
                       </div>
-                      <BookOpen className="text-gray-400" />
+                      <BookOpen className="text-orange-400 w-5 h-5" />
                     </div>
                   </button>
                 ))}
@@ -219,12 +221,14 @@ import { useLanguage } from "../hooks/useLanguage";
                 </div>
               </div>
             ) : (
-              <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-                <BookOpen className="text-6xl text-gray-300 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-gray-600 mb-4">
+              <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl shadow-lg p-12 text-center border-2 border-orange-200">
+                <div className="bg-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
+                  <BookOpen className="w-12 h-12 text-orange-500" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4 font-devanagari">
                   {t("aarti.selectAarti", "Select an Aarti")}
                 </h3>
-                <p className="text-gray-500">
+                <p className="text-gray-700 leading-relaxed max-w-md mx-auto">
                   {t(
                     "aarti.selectAartiDescription",
                     "Choose an aarti from the list to view its content and listen to the devotional prayer"

@@ -3,6 +3,7 @@ import "./globals.css";
 import { LanguageProvider } from "./contexts/LaunguageContext";
 import ClientNavbar from "./components/ClientNavbar";
 import ClientFooter from "./components/ClientFooter";
+import SessionProvider from "../components/SessionProvider";
 
 export const dynamic = 'force-dynamic';
 
@@ -27,11 +28,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LanguageProvider>
-          <ClientNavbar />
-          <main className="min-h-screen">{children}</main>
-          <ClientFooter />
-        </LanguageProvider>
+        <SessionProvider>
+          <LanguageProvider>
+            <ClientNavbar />
+            <main className="min-h-screen">{children}</main>
+            <ClientFooter />
+          </LanguageProvider>
+        </SessionProvider>
       </body>
     </html>
   );

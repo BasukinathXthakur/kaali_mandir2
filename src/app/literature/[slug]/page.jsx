@@ -4,12 +4,21 @@ import Ramayana from "../../pages/Ramayana";
 import BhagavadGita from "../../pages/BhagavadGita";
 import Mahabharat from "../../pages/Mahabharat";
 import Vedas from "../../pages/Vedas";
+import AartiDetail from "../../pages/AartiDetail";
+import { DEITIES } from "../../data/aarti";
 
 export default function LiteraturePage() {
   const params = useParams();
   const slug = params?.slug;
 
+  // Check if this is a deity aarti slug
+  const isDeityAarti = DEITIES.some((deity) => deity.slug === slug);
+
   // Render the appropriate component based on the slug
+  if (isDeityAarti) {
+    return <AartiDetail slug={slug} />;
+  }
+
   switch(slug) {
     case 'ramayana':
       return <Ramayana />;

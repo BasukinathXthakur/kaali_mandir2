@@ -113,6 +113,20 @@ export default {
     "joinCommunity": "Join our community to receive daily spiritual insights and updates",
     "joinNow": "Join Community"
   },
+  "aarti": {
+    "selectAarti": "Select an Aarti",
+    "selectAartiDescription": "Choose an aarti from the list to view its content and listen to the devotional prayer",
+    "back": "Back",
+    "backToLiterature": "Back to Literature",
+    "deityNotFound": "Deity not found",
+    "devotionalPrayers": "Devotional Prayers and Sacred Texts",
+    "devotionalPrayer": "Devotional Prayer",
+    "meaning": "Meaning and Significance",
+    "sampleMeaning": "This aarti is a devotional prayer that expresses deep reverence and love for the Divine. It is traditionally sung during evening prayers and special ceremonies to invoke blessings and protection.",
+    "sanskrit": "Sanskrit",
+    "aarti": "Aarti",
+    "availableAartis": "Available Aartis"
+  },
   "pujaBooking": {
     "title": "Puja Booking",
     "subtitle": "Book your sacred ceremonies with divine blessings",

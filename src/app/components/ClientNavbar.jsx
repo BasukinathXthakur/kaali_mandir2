@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 import {
   User,
   Bell,
@@ -15,6 +16,8 @@ import {
   DollarSign,
   Clock,
   ChevronDown,
+  LogOut,
+  Settings,
 } from "lucide-react";
 import { useLanguage } from "../hooks/useLanguage";
 
@@ -22,9 +25,9 @@ export default function Navbar() {
   const [languageOpen, setLanguageOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  // No auth for now - can be added later when backend is ready
-  const currentUser = null;
-  const isAdmin = false;
+  const { data: session, status } = useSession();
+  const currentUser = session?.user;
+  const isAdmin = false; // You can add admin role logic later
   const { currentLanguage, changeLanguage, t, languageNames, languages } =
     useLanguage();
   const router = useRouter();
@@ -59,9 +62,9 @@ export default function Navbar() {
     setServicesOpen(false);
   }, [pathname]);
 
-  const handleLogout = () => {
-    // Logout functionality - to be implemented with backend
-    router.push("/");
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: "/" });
+    setUserMenuOpen(false);
   };
 
   const handleLanguageChange = async (language) => {
@@ -76,9 +79,9 @@ export default function Navbar() {
         <div className="flex items-center space-x-2">
           <Link href="/" onClick={() => setServicesOpen(false)}>
             <img
-              src="/src/assets/logo.png"
+              src="/kali.jpeg"
               alt="Kaali Mandir"
-              className="w-12 h-12 rounded-full border-2 border-orange-600 p-1"
+              className="w-12 h-12 rounded-full border-2 border-orange-600 p-1 object-cover"
             />
           </Link>
           <Link href="/" onClick={() => setServicesOpen(false)}>
@@ -271,37 +274,83 @@ export default function Navbar() {
               }}
               className="cursor-pointer"
             >
-              <User className="w-8 h-8 text-gray-500" />
+              {currentUser ? (
+                <div className="flex items-center gap-2">
+                  {currentUser.image ? (
+                    <img
+                      src={currentUser.image}
+                      alt={currentUser.name || "User"}
+                      className="w-10 h-10 rounded-full border-2 border-orange-600 object-cover"
+                    />
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-orange-600 text-white flex items-center justify-center font-bold">
+                      {currentUser.name?.charAt(0)?.toUpperCase() || "U"}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <User className="w-8 h-8 text-gray-500 hover:text-orange-600 transition-colors" />
+              )}
             </div>
 
             {userMenuOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
+              <div className="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-xl overflow-hidden z-50">
                 {currentUser ? (
                   <>
-                    <div className="block px-4 py-2 text-sm text-gray-700 border-b">
-                      {currentUser.name || currentUser.email}
+                    {/* User Info Header */}
+                    <div className="bg-gradient-to-r from-orange-500 to-red-500 px-4 py-3 text-white">
+                      <div className="flex items-center gap-3">
+                        {currentUser.image ? (
+                          <img
+                            src={currentUser.image}
+                            alt={currentUser.name || "User"}
+                            className="w-12 h-12 rounded-full border-2 border-white object-cover"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded-full bg-white text-orange-600 flex items-center justify-center font-bold text-xl">
+                            {currentUser.name?.charAt(0)?.toUpperCase() || "U"}
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold truncate">
+                            {currentUser.name || "User"}
+                          </p>
+                          <p className="text-xs opacity-90 truncate">
+                            {currentUser.email}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    {isAdmin && (
-                      <Link
-                        href="/admin"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+
+                    {/* Menu Items */}
+                    <div className="py-2">
+                      {isAdmin && (
+                        <Link
+                          href="/admin"
+                          onClick={() => setUserMenuOpen(false)}
+                          className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
+                        >
+                          <Settings className="w-4 h-4" />
+                          {t("navbar.adminDashboard", "Admin Dashboard")}
+                        </Link>
+                      )}
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
                       >
-                        {t("navbar.adminDashboard")}
-                      </Link>
-                    )}
-                    <button
-                      onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      {t("navbar.logout")}
-                    </button>
+                        <LogOut className="w-4 h-4" />
+                        {t("navbar.logout", "Logout")}
+                      </button>
+                    </div>
                   </>
                 ) : (
                   <Link
                     href="/login"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setUserMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
                   >
-                    {t("navbar.login")}
+                    <User className="w-4 h-4" />
+                    {t("navbar.login", "Login / Sign Up")}
                   </Link>
                 )}
               </div>

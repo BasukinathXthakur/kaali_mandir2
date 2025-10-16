@@ -289,25 +289,26 @@ const PujaBooking = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-800 mb-4 text-center font-medium">
+                <p className="text-gray-900 mb-4 text-center font-medium leading-relaxed">
                   {puja.description}
                 </p>
 
                 {/* Price and Duration */}
-                <div className="flex justify-between items-center mb-4">
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-gray-900">
+                <div className="flex justify-between items-center mb-4 bg-white rounded-lg p-3 shadow-sm">
+                  <div className="text-center flex-1">
+                    <p className="text-2xl font-bold text-orange-600">
                       {puja.price}
                     </p>
-                    <p className="text-sm text-gray-700 font-medium">
+                    <p className="text-xs text-gray-600 font-semibold mt-1">
                       {t("pujaBooking.startingPrice")}
                     </p>
                   </div>
-                  <div className="text-center">
-                    <p className="text-lg font-semibold text-gray-900">
+                  <div className="h-12 w-px bg-gray-300"></div>
+                  <div className="text-center flex-1">
+                    <p className="text-lg font-bold text-gray-900">
                       {puja.duration}
                     </p>
-                    <p className="text-sm text-gray-700 font-medium">
+                    <p className="text-xs text-gray-600 font-semibold mt-1">
                       {t("pujaBooking.duration")}
                     </p>
                   </div>

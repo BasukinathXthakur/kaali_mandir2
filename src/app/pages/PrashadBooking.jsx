@@ -162,16 +162,16 @@ const PrashadBooking = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-700 mb-4 text-center">
+                <p className="text-gray-900 mb-4 text-center font-medium leading-relaxed">
                   {service.description}
                 </p>
 
                 {/* Price */}
-                <div className="text-center mb-4">
-                  <p className="text-2xl font-bold text-gray-800">
+                <div className="text-center mb-4 bg-white rounded-lg p-3 shadow-sm">
+                  <p className="text-2xl font-bold text-orange-600">
                     {service.price}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs text-gray-600 font-semibold mt-1">
                     {t("prashadBooking.price")}
                   </p>
                 </div>
