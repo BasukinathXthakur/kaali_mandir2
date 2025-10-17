@@ -70,23 +70,23 @@ const Donations = () => {
   };
 
   return (
-    <div className="py-10 bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+    <div className="py-8 sm:py-10 bg-gray-50 min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-10">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
             Support Our Temple
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-2">
             Your generous donations help us maintain the temple, organize
             religious ceremonies, and serve the community.
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
           {/* Donation Form */}
           <div className="lg:w-1/2">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6">
                 Make a Donation
               </h2>
 
@@ -124,7 +124,7 @@ const Donations = () => {
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                          className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-800 placeholder:text-gray-400"
                           placeholder="Your Name"
                           required
                         />
@@ -148,7 +148,7 @@ const Donations = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                          className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-800 placeholder:text-gray-400"
                           placeholder="Your Phone"
                           required
                         />
@@ -173,7 +173,7 @@ const Donations = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-800 placeholder:text-gray-400"
                         placeholder="Your Email"
                         required
                       />
@@ -196,7 +196,7 @@ const Donations = () => {
                         name="fatherName"
                         value={formData.fatherName}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-800 placeholder:text-gray-400"
                         placeholder="Father Name"
                         required
                       />
@@ -220,7 +220,7 @@ const Donations = () => {
                         name="address"
                         value={formData.address}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-800 placeholder:text-gray-400"
                         placeholder="Enter Village Name"
                         required
                       />
@@ -244,7 +244,7 @@ const Donations = () => {
                         name="amount"
                         value={formData.amount}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-800 placeholder:text-gray-400"
                         placeholder="Amount"
                         min="1"
                         required
@@ -265,7 +265,7 @@ const Donations = () => {
                         name="paymentMethod"
                         value={formData.paymentMethod}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-800"
                         required
                       >
                         <option value="upi">UPI</option>
@@ -287,7 +287,7 @@ const Donations = () => {
                         name="purpose"
                         value={formData.purpose}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-800"
                         required
                       >
                         <option value="general">General Donation</option>
@@ -315,7 +315,7 @@ const Donations = () => {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-800 placeholder:text-gray-400"
                       placeholder="Your message or prayer request"
                       rows="3"
                     ></textarea>
@@ -334,12 +334,12 @@ const Donations = () => {
 
           {/* Donations List */}
           <div className="lg:w-1/2">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-semibold text-gray-800">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-3">
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800">
                   Recent Donations
                 </h2>
-                <div className="bg-orange-100 text-orange-800 font-medium py-2 px-4 rounded-md">
+                <div className="bg-orange-100 text-orange-800 font-medium py-1.5 sm:py-2 px-3 sm:px-4 rounded-md text-sm sm:text-base">
                   Total: ₹{totalDonations.toLocaleString()}
                 </div>
               </div>

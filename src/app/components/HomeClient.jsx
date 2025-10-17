@@ -65,8 +65,8 @@ const Home = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Banner - Sri Mandir Inspired with Blurred Gradient */}
-      <div className="relative min-h-[50vh] md:min-h-[80vh] overflow-hidden">
+      {/* Hero Banner - Optimized for Mobile & Desktop */}
+      <div className="relative h-screen max-h-[650px] sm:max-h-[700px] md:max-h-[850px] overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
@@ -76,42 +76,58 @@ const Home = () => {
           />
         </div>
 
-        {/* Gradient Overlay - Blends from left (dark) to right (transparent) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+        {/* Enhanced Gradient Overlays for Better Text Visibility */}
+        {/* Mobile: Strong gradient from bottom, Desktop: Left to right gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent md:bg-gradient-to-r md:from-black/85 md:via-black/60 md:to-transparent"></div>
 
-        {/* Content Container */}
-        <div className="relative z-10 min-h-[50vh] md:min-h-[80vh] flex items-center">
-          <div className="container mx-auto px-4 py-8">
-            <div className="max-w-2xl">
-              {/* Left Side - Text Content */}
-              <div className="text-white space-y-4 md:space-y-6 mt-16 md:mt-0">
-                <div className="space-y-2 md:space-y-4">
-                  <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                    <span className="block text-orange-400 font-devanagari">
-                      {t("home.welcomeToKaaliMandir", "Welcome to")}
-                    </span>
-                    <span className="block text-white font-devanagari">
-                      Kaali Mandir
-                    </span>
-                  </h1>
-                  <p className="text-lg md:text-xl text-gray-200">
-                    {t("home.yourTempleAnytimeAnywhere", "Your Temple, Anytime, Anywhere")}
-                  </p>
+        {/* Content Container - Bottom aligned on mobile, centered on desktop */}
+        <div className="relative z-10 h-full flex items-end md:items-center pb-8 sm:pb-12 md:pb-0">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-3xl">
+              {/* Text Content */}
+              <div className="text-white space-y-4 sm:space-y-5 md:space-y-6">
+                {/* Welcome Badge */}
+                <div className="inline-block">
+                  <span className="bg-orange-500/90 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium">
+                    {t("home.welcomeToKaaliMandir", "Welcome to")}
+                  </span>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                {/* Main Heading */}
+                <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                  <span className="block text-white font-devanagari drop-shadow-2xl">
+                    Kaali Mandir
+                  </span>
+                  <span className="block text-orange-400 font-devanagari text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-1 sm:mt-2">
+                    Divine Temple
+                  </span>
+                </h1>
+
+                {/* Subtitle */}
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 max-w-2xl drop-shadow-lg">
+                  {t("home.yourTempleAnytimeAnywhere", "Your Sacred Space, Anytime, Anywhere")}
+                </p>
+
+                {/* Call to Action Buttons */}
+                <div className="pt-4 sm:pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                     <Link
                       href="/pujas"
-                      className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center"
+                      className="group bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-bold py-3 px-6 sm:py-3.5 sm:px-8 md:py-4 md:px-10 rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 text-center text-sm sm:text-base md:text-lg"
                     >
-                      {t("home.bookAPuja", "Book a Puja")}
+                      <span className="flex items-center justify-center gap-2">
+                        <HandHeart className="w-4 h-4 sm:w-5 sm:h-5" />
+                        {t("home.bookAPuja", "Book a Puja")}
+                      </span>
                     </Link>
                     <Link
                       href="/donations"
-                      className="border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-lg transition-all duration-300 bg-white/10 backdrop-blur-sm text-center"
+                      className="border-2 border-white/90 text-white hover:bg-white hover:text-orange-600 font-bold py-3 px-6 sm:py-3.5 sm:px-8 md:py-4 md:px-10 rounded-xl transition-all duration-300 bg-white/10 backdrop-blur-md text-center text-sm sm:text-base md:text-lg"
                     >
-                      {t("home.donateNow", "Donate Now")}
+                      <span className="flex items-center justify-center gap-2">
+                        <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
+                        {t("home.donateNow", "Donate Now")}
+                      </span>
                     </Link>
                   </div>
                 </div>
@@ -170,15 +186,20 @@ const Home = () => {
         </div>
       )}
 
-      {/* Upcoming Events Section - full width background like Support Our Temple */}
-      <div className="py-16 mt-20 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2 font-devanagari">
-              {t("home.upcomingEvents", "Upcoming Events")}
+      {/* Upcoming Events Section */}
+      <div className="py-16 sm:py-20 bg-gradient-to-br from-orange-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-block bg-orange-100 rounded-full px-6 py-2 mb-4">
+              <span className="text-orange-600 font-semibold text-sm md:text-base">
+                {t("home.upcomingEvents", "Upcoming Events")}
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-devanagari">
+              Sacred Celebrations
             </h2>
-            <p className="text-gray-600">
-              {t("home.joinUsForSacredCeremonies", "Join us for sacred ceremonies and celebrations")}
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+              {t("home.joinUsForSacredCeremonies", "Join us for sacred ceremonies and divine celebrations")}
             </p>
           </div>
 
@@ -246,203 +267,240 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Quick Access Cards */}
-      <div className="py-16 bg-white">
-        <div className="container mx-auto px-4 ">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2 font-devanagari">
-              {t("home.divineServices", "Divine Services")}
+      {/* Divine Services Section */}
+      <div className="py-16 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-block bg-orange-100 rounded-full px-6 py-2 mb-4">
+              <span className="text-orange-600 font-semibold text-sm md:text-base">
+                {t("home.divineServices", "Divine Services")}
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-devanagari">
+              Connect with Divinity
             </h2>
-            <p className="text-gray-600">
-              {t("home.connectWithSpiritualJourney", "Connect with your spiritual journey")}
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+              {t("home.connectWithSpiritualJourney", "Explore our sacred services and deepen your spiritual connection")}
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16 sm:mb-20">
             <Link
               href="/pujas"
-              className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              <div className="bg-orange-600 text-white p-3 rounded-full mb-4">
-                <HandHeart className="text-2xl" />
+              <div className="p-6 sm:p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <HandHeart className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">
+                  {t("home.bookPujaChadhava", "Book Puja")}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  {t("home.scheduleSacredRituals", "Sacred rituals & ceremonies")}
+                </p>
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">
-                {t("home.bookPujaChadhava", "Book Puja/Chadhava")}
-              </h3>
-              <p className="text-sm text-gray-600">
-                {t("home.scheduleSacredRituals", "Schedule sacred rituals")}
-              </p>
             </Link>
 
             <Link
               href="/panchang"
-              className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              <div className="bg-orange-600 text-white p-3 rounded-full mb-4">
-                <Clock className="text-2xl" />
+              <div className="p-6 sm:p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Clock className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                  {t("home.panchangHoroscope", "Panchang")}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  {t("home.dailyAstrologicalGuidance", "Auspicious timings")}
+                </p>
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">
-                {t("home.panchangHoroscope", "Panchang/Horoscope")}
-              </h3>
-              <p className="text-sm text-gray-600">
-                {t("home.dailyAstrologicalGuidance", "Daily astrological guidance")}
-              </p>
             </Link>
 
             <Link
               href="/music"
-              className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              <div className="bg-orange-600 text-white p-3 rounded-full mb-4">
-                <Music className="text-2xl" />
+              <div className="p-6 sm:p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Music className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-purple-600 transition-colors">
+                  {t("home.devotionalMusic", "Devotional Music")}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  {t("home.sacredBhajansMantras", "Bhajans & mantras")}
+                </p>
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">
-                {t("home.devotionalMusic", "Devotional Music")}
-              </h3>
-              <p className="text-sm text-gray-600">
-                {t("home.sacredBhajansMantras", "Sacred bhajans & mantras")}
-              </p>
             </Link>
 
             <Link
               href="/literature"
-              className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              <div className="bg-orange-600 text-white p-3 rounded-full mb-4">
-                <BookOpen className="text-2xl" />
+              <div className="p-6 sm:p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <BookOpen className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
+                  {t("home.hinduLiterature", "Sacred Texts")}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  {t("home.ancientWisdomScriptures", "Ancient wisdom")}
+                </p>
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">
-                {t("home.hinduLiterature", "Hindu Literature")}
-              </h3>
-              <p className="text-sm text-gray-600">
-                {t("home.ancientWisdomScriptures", "Ancient wisdom & scriptures")}
-              </p>
             </Link>
 
             <Link
               href="/virtual-temple"
-              className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              <div className="bg-orange-600 text-white p-3 rounded-full mb-4">
-                <Building2 className="text-2xl" />
+              <div className="p-6 sm:p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Building2 className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-indigo-600 transition-colors">
+                  {t("home.divineTemple", "Virtual Temple")}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  {t("home.virtualMandirExperience", "Divine experience")}
+                </p>
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">
-                {t("home.divineTemple", "Divine Temple")}
-              </h3>
-              <p className="text-sm text-gray-600">
-                {t("home.virtualMandirExperience", "Virtual mandir experience")}
-              </p>
             </Link>
 
             <Link
               href="/community"
-              className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              <div className="bg-orange-600 text-white p-3 rounded-full mb-4">
-                <Users className="text-2xl" />
+              <div className="p-6 sm:p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Users className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-pink-600 transition-colors">
+                  {t("home.sanataniCommunity", "Community")}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  {t("home.connectWithDevotees", "Connect with devotees")}
+                </p>
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">
-                {t("home.sanataniCommunity", "Sanatani Community")}
-              </h3>
-              <p className="text-sm text-gray-600">
-                {t("home.connectWithDevotees", "Connect with devotees")}
-              </p>
             </Link>
 
             <Link
               href="/yatra"
-              className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              <div className="bg-orange-600 text-white p-3 rounded-full mb-4">
-                <MapPin className="text-2xl" />
+              <div className="p-6 sm:p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <MapPin className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-teal-600 transition-colors">
+                  {t("home.yatraDarshan", "Yatra")}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  {t("home.pilgrimageJourneys", "Sacred pilgrimages")}
+                </p>
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">
-                {t("home.yatraDarshan", "Yatra/Darshan")}
-              </h3>
-              <p className="text-sm text-gray-600">
-                {t("home.pilgrimageJourneys", "Pilgrimage journeys")}
-              </p>
             </Link>
 
             <Link
               href="/donations"
-              className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col items-center text-center"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              <div className="bg-orange-600 text-white p-3 rounded-full mb-4">
-                <DollarSign className="text-2xl" />
+              <div className="p-6 sm:p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Heart className="text-white w-8 h-8" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-red-600 transition-colors">
+                  {t("home.chandaDonations", "Donations")}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  {t("home.supportTempleActivities", "Support temple")}
+                </p>
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">
-                {t("home.chandaDonations", "Chanda/Donations")}
-              </h3>
-              <p className="text-sm text-gray-600">
-                {t("home.supportTempleActivities", "Support temple activities")}
-              </p>
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Quick Donation Section */}
-      <div className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <Heart className="text-5xl text-orange-500 mx-auto mb-4" />
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+      {/* Support Our Temple - Call to Action Section */}
+      <div className="py-16 sm:py-20 bg-gradient-to-br from-orange-500 to-orange-600 relative overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 bg-black/5"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full translate-y-48 -translate-x-48"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <Heart className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-6 animate-pulse" />
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
               {t("home.supportOurTemple", "Support Our Temple")}
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl text-orange-50 mb-8 sm:mb-10 leading-relaxed">
               {t("home.yourGenerousDonations", "Your generous donations help us maintain the temple and conduct regular pujas")}
             </p>
             <Link
               href="/donations"
-              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors"
+              className="inline-block bg-white text-orange-600 hover:bg-orange-50 font-bold py-4 px-8 sm:py-5 sm:px-12 rounded-xl transition-all duration-300 shadow-2xl hover:shadow-white/25 transform hover:-translate-y-1 text-lg sm:text-xl"
             >
-              {t("home.donateNow", "Donate Now")}
+              {t("home.donateNow", "Donate Now")} →
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Services Section */}
-      <div className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">
-              {t("home.ourServices", "Our Services")}
+      {/* Temple Services Section */}
+      <div className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-block bg-orange-100 rounded-full px-6 py-2 mb-4">
+              <span className="text-orange-600 font-semibold text-sm md:text-base">
+                {t("home.ourServices", "Our Services")}
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-devanagari">
+              Temple Services
             </h2>
-            <p className="text-gray-600">{t("home.weOfferVariousReligious", "We offer various religious services and ceremonies")}</p>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+              {t("home.weOfferVariousReligious", "We offer various religious services and sacred ceremonies")}
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-orange-500">🙏</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+            <div className="group bg-white p-8 sm:p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center border border-gray-100">
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span className="text-4xl">🙏</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 group-hover:text-orange-600 transition-colors">
                 {t("home.pujaServices", "Puja Services")}
               </h3>
-              <p className="text-gray-600">{t("home.wePerformVariousPujas", "We perform various pujas for different occasions")}</p>
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                {t("home.wePerformVariousPujas", "We perform various pujas for different occasions and celebrations")}
+              </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-orange-500">🔥</span>
+            <div className="group bg-white p-8 sm:p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center border border-gray-100">
+              <div className="w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span className="text-4xl">🔥</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 group-hover:text-red-600 transition-colors">
                 {t("home.hawanCeremonies", "Hawan Ceremonies")}
               </h3>
-              <p className="text-gray-600">{t("home.sacredFireCeremonies", "Sacred fire ceremonies for purification and blessings")}</p>
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                {t("home.sacredFireCeremonies", "Sacred fire ceremonies for purification and divine blessings")}
+              </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-orange-500">💍</span>
+            <div className="group bg-white p-8 sm:p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center border border-gray-100">
+              <div className="w-20 h-20 bg-gradient-to-br from-pink-100 to-pink-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span className="text-4xl">💍</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 group-hover:text-pink-600 transition-colors">
                 {t("home.weddingCeremonies", "Wedding Ceremonies")}
               </h3>
-              <p className="text-gray-600">
-                {t("home.traditionalHinduWedding", "Traditional Hindu wedding ceremonies and rituals")}
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                {t("home.traditionalHinduWedding", "Traditional Hindu wedding ceremonies and sacred rituals")}
               </p>
             </div>
           </div>
